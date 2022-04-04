@@ -94,3 +94,144 @@ const ticker = prompt("Enter your ticker")
 const amount = prompt("enter the amount")
 
 console.log(`you just bought ${amount} ${ticker}`)
+
+# objects
+```js
+const purchase = {
+    ticker: ticker,
+    amount: amount
+}
+```
+- every object has prototype which allows method such as `toString()`
+- can use dot notation `purchase.ticker`
+- can use brancker notation `purchase['ticker']
+- adding new keys in object 
+```js
+purchase.owner = {
+    name: 'kei',
+    accountNumber: '123123'
+}
+// chaining
+purchase.owner.name
+> 'keivin'
+```
+- optional chaining
+```js
+purchase.fakeowner.name
+> TypeError
+purchase.fakeowner?.name
+> undefined
+```
+
+## arrays
+- like lists
+- getting last element
+```js
+let cheatCode = [11,12,13,14]
+cheatCode[cheatCode.length  - 1] 
+// better way to get last element
+cheatCode.at(-1)
+> 14
+// lenth property
+cheatCode.length
+> 4 
+cheatCode['length']
+> 4
+// slice
+cheatCode.slice(-1)
+// toString()
+cheatCode.toString()
+> '11,12,13,14'
+// join()
+cheatCode.join(":")
+> '11:12:13:14'
+// using join() method and innerHTML
+document.body.innerHTML =   `<ul><li>${cheatCode.join('</li><li>')}</li></ul>`
+'<ul><li>11</li><li>12</li><li>13</li><li>14</li></ul>'
+```
+// reverse()
+let abc = ['a', 'b', 'c']
+abc.reverse()
+> ['c', 'b', 'a']
+
+## cloning
+- shallow cloning
+```js
+// via slice
+newCheatCode = cheatCode.slice()
+// via spread operator
+const newCheatCode = [...cheatCode]
+> [11, 12, 13, 14]
+// enumerate twice via spread operator
+[...cheatCode, ...cheatCode]
+> [11, 12, 13, 14, 11, 12, 13, 14]
+// via JSON.stringify
+JSON.stringify(cheatCode)
+> '[11,12,13,14]'
+```
+
+
+- deep cloning
+    - values on multipe values
+```js
+// shallow copy does not work on arrays
+let transactions = [
+  {
+    currency: 'BTC',
+    amount: 0.2
+  },
+  {
+    currency: 'ETH',
+    amount: 1.2
+  }
+]
+
+let clonedTransactions = [...transactions]
+clonedTransactions[1].amount += 0.1
+  
+console.log(transactions)
+> [ { currency: 'BTC', amount: 0.2 },
+  { currency: 'ETH', amount: 1.3 } ]
+
+console.log(clonedTransactions)
+> [ { currency: 'BTC', amount: 0.2 },
+  { currency: 'ETH', amount: 1.3 } ]
+// deep closing via JSON parsing and stringify
+let clonedTransaction = JSON.parse(JSON.stringify(transactions))
+console.log(transactions)
+> [ { currency: 'BTC', amount: 0.2 },
+  { currency: 'ETH', amount: 1.2 } ]
+
+console.log(clonedTransactions)
+> [ { currency: 'BTC', amount: 0.2 },
+  { currency: 'ETH', amount: 1.3 } ]
+```
+- properties that contain functions are called `methods`
+- `toUpperCase()` is a method of a string
+## non-binding names need ot be quoted in objects
+```js
+let actions = {
+    work: "went to work",
+    "jump around": "jump around the room",
+}
+```
+## using delete on objects
+```js
+bodyParts = {
+    arms: 2,
+    legs: 2,
+    head: 1
+}
+delete bodyParts.head
+console.log("head" in bodyParts)
+> False
+console.log("arms" in bodyParts)
+> Trues
+```
+## using Object.keys and values funcs
+```js
+Object.keys(bodyParts)
+> ['arms', 'legs']
+Object.values(bodyParts)
+> [2, 2]
+```
