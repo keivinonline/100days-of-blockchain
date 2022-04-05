@@ -235,3 +235,111 @@ Object.keys(bodyParts)
 Object.values(bodyParts)
 > [2, 2]
 ```
+## `Object.assign` function
+- copies all properties from 1 obj to another
+```js
+let objA = {a:1, b:2}
+Object.assign(objA, {b:3,c:4})
+objA
+> { a: 1, b: 3, c: 4 }
+```
+## check types with `typeof`
+```js
+typeof []
+> object
+typeof ""
+> string
+```
+# Mutability
+- numbers, strings and bools are immutable
+- objects are different
+## comparing objects 
+- JS compares identity
+```js
+let obj1 = {val:10}
+let obj2 = obj1
+let obj3 = {val:10}
+console.log(obj1 == obj2) // points to same pointer/frame
+> true
+console.log(obj1 == obj3) // different identity
+> false
+obj1.val = 15
+console.log(obj1)
+> 15
+console.log(obj2)
+> 15
+```
+## const binding behavior
+- object can't be changed but contents can
+```js
+> const score = {visitors:0, home: 0}
+undefined
+> score.visitors
+0
+> score.visitors = 1
+1
+> score
+{ visitors: 1, home: 0 }
+> score = {visitors:1,home:1}
+Uncaught TypeError: Assignment to constant variable.
+```
+## pushing values 
+```js
+journal = []
+// shorthand for events: events
+function addEntry(events, slept){
+    journal.push(events,slept)
+}
+addEntry(["work","eat"], false)
+addEntry(["work","workmore"], true)
+> journal
+[
+  { events: [ 'work', 'eat' ], slept: false },
+  { events: [ 'work', 'workmore' ], slept: true }
+]
+// print events in journal
+function printEvents(journal){
+    for (let i = 0; i < journal.length; i ++){
+        console.log(journal[i])
+    }
+}
+printEvents(journal)
+> { events: [ 'work', 'eat' ], werewolf: false }
+> { events: [ 'sleep', 'play' ], werewolf: true }
+```
+## `includes` method
+```js
+journal[0].events.includes('work')
+> true
+```
+## Array Loops
+- classic JS
+```js
+for (let i = 0; i < journal.length; i ++){
+    let entry = journal[i]
+    console.log(entry)
+}
+```
+- modern JS
+```js
+// of word will loop elements in object
+for (let entry of journal){
+    console.log(`${entry.events}`)
+}
+> work,eat
+> sleep, play
+ss
+```
+```js
+// extract events and dedupe
+function getEvents(journal){
+    let events = []
+    for (let entry of journal){
+        for (event of entry.events){
+            console.log(event)
+            events.push(event)
+        }   
+    }
+    return events
+}
+```
