@@ -17,3 +17,8 @@
 - learned Rest/Spread syntax for multi vars
 - more string methods like padstart, split and trim
 - halfway through exercises which covered sorting, in-place replacement and composite functions with ifs and for
+
+# day 5-6
+- revised recursion in JS
+- solved linked list creation and reversing exercise
+- left with 1 Question on deep cloning for the chapter
