@@ -459,3 +459,5 @@ JSON.parse(string).traits
 ## Sumary
 - most values have properties except for `null` and `undefined`
 - accessing them via dot notation or regular dict notation
+
+# recursive functions
