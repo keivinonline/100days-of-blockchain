@@ -92,9 +92,11 @@ function prepend(element, list) {
 
 function nth(list, position) {
     let array = listToArray(list)
-    let element = array.slice(position, position - 1)
+    let element = array.slice(position, position + 1)
     if (element !== undefined) {
         return element
+    } else {
+        return undefined
     }
 }
 // test cases
