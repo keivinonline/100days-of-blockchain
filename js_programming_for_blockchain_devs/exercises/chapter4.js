@@ -108,3 +108,79 @@ listToArray(list)
 prepend(10, prepend(20, null))
     // > { value: 10, rest: { value: 20, rest: null } }
 nth(arrayToList(array), 1)
+
+
+// deep comparison
+let obj1 = { here: { is: "an" }, object: 2 }
+let obj2 = { here: { is: "an" }, object: 2 }
+
+function deepEqual(obj1, obj2) {
+    // check for real object
+    obj1Valid = (typeof(obj1) == "object" && obj1 != null ? true : false)
+    obj2Valid = (typeof(obj2) == "object" && obj2 != null ? true : false)
+    if (!obj1Valid || !obj2Valid) { return false }
+    // get keys 
+    let obj1Keys = Object.keys(obj1)
+    let obj2Keys = Object.keys(obj2)
+    let obj1Values = Object.values(obj1)
+    let obj2Values = Object.values(obj2)
+
+    // check length of keys and values
+    if (
+        (obj1Keys.length != obj2Keys.length) ||
+        (obj1Values.length != obj2Values.length)
+    ) {
+        console.log("length of keys/values not matching")
+        return false
+    }
+    // compare keys
+    let keysEqualArray = []
+    for (key of obj1Keys) {
+        keysEqual = (obj2Keys.includes(key) ? true : false)
+        keysEqualArray.push(keysEqual)
+        if (!keysEqual) {
+            console.log(`${key} is not found in obj2`)
+        }
+    }
+    // compare values 
+    let valuesEqualArray = []
+    for (value of obj1Values) {
+        valuesEqual = (obj2Values.includes(value) ? true : false)
+        valuesEqualArray.push(valuesEqual)
+        if (!valuesEqual) {
+            console.log(`${value} is not found in obj2`)
+        }
+    }
+    // check all returned comparison
+    let finalKeysEqual = (keysEqualArray.includes(false) ? false : true)
+    let finalValuesEqual = (valuesEqualArray.includes(false) ? false : true)
+
+
+    return (finalKeysEqual && finalValuesEqual ? true : false)
+
+}
+
+deepEqual(obj1, null) // false
+deepEqual(obj1, obj1) // true
+deepEqual(obj1, { here: 1, object: 2 }) // false
+deepEqual(obj1, { here: { is: "an" }, object: 2 }) // true
+
+// with JSON package
+function deepEqualwithJSON(obj1, obj2) {
+    // check for real object
+    obj1Valid = (typeof(obj1) == "object" && obj1 != null ? true : false)
+    obj2Valid = (typeof(obj2) == "object" && obj2 != null ? true : false)
+
+    if (obj1Valid && obj2Valid) {
+        // compare via JSON
+        let obj1JSON = JSON.stringify(obj1)
+        let obj2JSON = JSON.stringify(obj2)
+        return (obj1JSON == obj2JSON ? true : false)
+
+    }
+}
+
+deepEqualwithJSON(obj1, null) // false
+deepEqualwithJSON(obj1, obj1) // true
+deepEqualwithJSON(obj1, { here: 1, object: 2 }) // false
+deepEqualwithJSON(obj1, { here: { is: "an" }, object: 2 }) // true

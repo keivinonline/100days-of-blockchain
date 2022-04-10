@@ -22,3 +22,7 @@
 - revised recursion in JS
 - solved linked list creation and reversing exercise
 - left with 1 Question on deep cloning for the chapter
+
+# day 7-8
+- finished Data structures exercises
+- halfway into Control Structures
