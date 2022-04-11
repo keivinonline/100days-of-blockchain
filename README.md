@@ -26,3 +26,7 @@
 # day 7-8
 - finished Data structures exercises
 - halfway into Control Structures
+
+# day 9
+- finished Control Structures lesson - Sequence, Selection and Iteration
+- learned the diff variations of for loops in JS
