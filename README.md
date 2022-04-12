@@ -30,3 +30,7 @@
 # day 9
 - finished Control Structures lesson - Sequence, Selection and Iteration
 - learned the diff variations of for loops in JS
+
+# day 10
+- Halfway through Writing Good JS section
+- reviewing ways to approach problems via 1. state space, 2.computations and 3.return value approach
