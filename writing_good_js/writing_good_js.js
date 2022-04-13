@@ -69,3 +69,42 @@ function tickersToList2(cryptos, isOrdered = false) {
         </${listType}l>
     `
 }
+
+// tic tac toe game
+function getUserInput(userPlayerSymbol) {
+
+}
+
+function isMoveValid(coordinates, gameBoard) {
+
+}
+
+function makeAMove(gameBoard, nextPlayerSymbol) {
+    // clone the gameBoard before placing moves in it
+    do {
+        let coordinates = getUserInput()
+    } while (!isMoveValid(coordinates, gameBoard))
+    // return newGameBoard
+
+}
+
+function isGameOver(gameBoard) {
+    // 1. check if there is a winer
+    // 2. check if the board is full
+
+    // Return : winner/draw Or game is in progress
+}
+
+function ticTacToe() {
+    // state space
+    let gameBoard = undefined
+    let players = ['X', 'O']
+    let nextPlayerIndex = 0
+
+    // computations
+    while (!isGameOver) {
+        gameBoard = makeAMove(gameBoard, nextPlayerIndex)
+
+    }
+
+}
