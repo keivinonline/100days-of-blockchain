@@ -34,3 +34,7 @@
 # day 10
 - Halfway through Writing Good JS section
 - reviewing ways to approach problems via 1. state space, 2.computations and 3.return value approach
+
+# day 11-12
+- Finished lesson on Writing Good JS
+- Halfway creating tic-tac-toe in JS
