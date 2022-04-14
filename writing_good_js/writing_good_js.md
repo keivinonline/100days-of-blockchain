@@ -11,3 +11,71 @@
 function tickersToList2(crypto, isOrdered = false) {}
 
 ```
+## top-down solving
+- what it takes to solve the problem
+- break into steps
+
+### tic-tac-toe programs
+- data structure choices
+1. [WRONG] objects are NOT ITERABLE !
+```js
+{
+    firstRow: {
+        firstCol: 'X',
+        secondCol: null,
+        thirdCol: null
+    },
+    secondRow: {
+        firstCol: 'X',
+        secondCol: null,
+        thirdCol: null
+    },
+    thirdRow: {
+        firstCol: 'X',
+        secondCol: null,
+        thirdCol: null
+    }
+}
+```
+2. arrays of arrays
+```js
+let gameBoard = [
+    [null,null,null],
+    [null,null,null],
+    [null,null,null]
+]
+// index of gameboard
+/* 
+012
+345
+678
+*/
+
+let winnerCombos = [
+    // horizontal winners
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    // vertical winners
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    // diagonal winners
+    [0,4,8],
+    [2,4,6]
+]
+```
+3. 
+
+## destructuring
+- aking to python's unpacking ? 
+```js
+let combo = [2,4,6]
+let [i1,i2,i3] = combo
+i1
+> 2
+i2
+> 4
+i3
+> 6
+```
