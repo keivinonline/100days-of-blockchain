@@ -78,8 +78,8 @@ function isGameOver(gameBoard, currentPlayerSymbol) {
         return true;
     }
     // 2. check if the board is full
-    for (index of gameBoard) {
-
+    if (gameBoard.includes(null)) {
+        return false
     }
 
     // Return: winner/draw OR game is still in progress
