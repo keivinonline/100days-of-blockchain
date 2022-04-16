@@ -38,3 +38,7 @@
 # day 11-12
 - Finished lesson on Writing Good JS
 - Halfway creating tic-tac-toe in JS
+
+# day 13-14
+- Finished tic-tac-toe challenge and review
+- Learned a few more operators array tricks

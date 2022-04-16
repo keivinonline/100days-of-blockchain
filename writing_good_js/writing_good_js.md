@@ -79,3 +79,41 @@ i2
 i3
 > 6
 ```
+
+## ?? operator
+```js
+null ?? "anything"
+> "anything"
+
+'X' ?? "anything"
+> 'X'
+```
+## every method for arrays
+```js
+gameBoard = new Array(9).fill(null);
+// checks if null is in any of the element
+gameBoard.every(element => element !== null)
+> true
+```
+
+# sort()
+```js
+arr = [5,55,1,4,11]
+arr.sort()
+> [1, 11, 4, 5, 55]
+```
+## proper sorting
+```js
+function comparator(a,b){
+    return a - b
+}
+
+arr = [5,55,1,4,11]
+arr.sort(comparator)
+> [ 1, 4, 5, 11, 55 ]
+```
+## shorthand for comparator
+```js
+arr = [5,55,1,4,11]
+arr.sort((a,b) => a - b)
+```
