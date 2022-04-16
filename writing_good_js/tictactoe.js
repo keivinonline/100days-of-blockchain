@@ -1,21 +1,9 @@
 let gameBoard = new Array(9).fill(null);
 
 function getGameBoard(gameBoard) {
-    console.log(gameBoard[0], gameBoard[1], gameBoard[2])
-    console.log(gameBoard[3], gameBoard[4], gameBoard[5])
-    console.log(gameBoard[6], gameBoard[7], gameBoard[8])
-}
-
-function getUserSymbol() {
-    // limit to x or o
-    do {
-        nextPlayerSymbol = prompt("enter your symbol").toLowerCase()
-        console.log(nextPlayerSymbol)
-    } while (
-        nextPlayerSymbol != 'x' &&
-        nextPlayerSymbol != 'o'
-    )
-    return nextPlayerSymbol
+    console.log(`${gameBoard[0]}-${gameBoard[1]}-${gameBoard[2]}`)
+    console.log(`${gameBoard[3]}-${gameBoard[4]}-${gameBoard[5]}`)
+    console.log(`${gameBoard[6]}-${gameBoard[7]}-${gameBoard[8]}`)
 }
 
 function getUserInputMove() {
@@ -37,14 +25,13 @@ function isMoveValid(coordinates, gameBoard) {
     return (gameBoard[coordinates] == null ? true : false)
 }
 
-function makeAMove(gameBoard) {
+function makeAMove(gameBoard, currentPlayerSymbol) {
     // clone the game board before placing moves in it
     do {
         coordinates = getUserInputMove()
-        symbol = getUserSymbol();
     } while (!isMoveValid(coordinates, gameBoard));
     // return newGameBoard;
-    gameBoard[coordinates] = symbol
+    gameBoard[coordinates] = currentPlayerSymbol
     return gameBoard
 }
 
@@ -72,7 +59,7 @@ function hasLastMoverWon(lastSymbol, gameBoard) {
 
 function isGameOver(gameBoard, currentPlayerSymbol) {
     // 1. check if there is a winner 
-    if (hasLastMoverWon(lastMove, gameBoard)) {
+    if (hasLastMoverWon(currentPlayerSymbol, gameBoard)) {
         // Write a message that last mover has won the game
         alert(`Congratulations, ${currentPlayerSymbol} has won the game`);
         return true;
@@ -83,17 +70,34 @@ function isGameOver(gameBoard, currentPlayerSymbol) {
     }
 
     // Return: winner/draw OR game is still in progress
+    if (!gameBoard.includes(null)) {
+        // Assume board is full and winner is not found
+        alert(`It's a draw !`)
+        return true
+    }
 }
 
 function ticTacToe() {
     // State space 
     let gameBoard = new Array(9).fill(null);
-    let players = ['X', 'O'];
+    let players = ['x', 'o'];
     let nextPlayerIndex = 0;
 
     // Computations 
     do {
+        // start with player X and take turns
+        currentPlayerSymbol = (nextPlayerIndex % 2 == 0 ? players[0] : players[1])
+
+        // increment for next player
+        nextPlayerIndex += 1
+
+        // message log
+        console.log(`It's player ${currentPlayerSymbol}'s turn!`)
+
         gameBoard = makeAMove(gameBoard, currentPlayerSymbol);
+        getGameBoard(gameBoard)
+
+
     } while (!isGameOver(gameBoard, currentPlayerSymbol));
 
     // Return value 
