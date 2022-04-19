@@ -42,3 +42,7 @@
 # day 13-14
 - Finished tic-tac-toe challenge and review
 - Learned a few more operators array tricks
+
+# day 15-17
+- Started learning DOMs and `document.querySelector()`
+- displays tic-tac-toe output to page via DOMs
