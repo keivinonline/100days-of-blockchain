@@ -1,0 +1,25 @@
+body {
+    box-sizing: border-box;
+}
+
+.board {
+    width: 150px;
+    border: 2px solid black;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    border: 1px solid;
+    text-align: center;
+    line-height: 50px;
+}
+
+.button {
+    width: 48px;
+    height: 48px;
+}

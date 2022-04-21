@@ -46,3 +46,7 @@
 # day 15-17
 - Started learning DOMs and `document.querySelector()`
 - displays tic-tac-toe output to page via DOMs
+
+# day 18-19
+- learned about data attributes, forms and buttons
+- finished interactive tic-tac-toe https://t0fybh.csb.app/
