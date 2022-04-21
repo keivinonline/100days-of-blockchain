@@ -34,6 +34,20 @@ document.querySelector(".elementor-section-wrap")
 ## <pre> tags
 - preformatted text
 - every character occupies same amount of width and length (monospace)
-```js
 
+## DOM manipulation
+- symbolizes we're using a document node 
+```js
+const $node = document.querySelector("js-node");
+
+// toggling to enable/disable a classList
+$node.classList.toggle("border-darkred")
+
+// getting dataset from data-* attributes
+// use this for attaching data attributes
+document.querySelector('.js-winner').dataset
 ```
+## Summary
+- Regular classes for styling
+- js-* classes used as handles to get document nodes
+- data attributes for  storing data
