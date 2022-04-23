@@ -50,3 +50,7 @@
 # day 18-19
 - learned about data attributes, forms and buttons
 - finished interactive tic-tac-toe https://t0fybh.csb.app/
+
+# day 20-21
+- learned async in JS (promises, async and await)
+- bit more left before "Building a Dex" chapter ! 
