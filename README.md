@@ -54,3 +54,7 @@
 # day 20-21
 - learned async in JS (promises, async and await)
 - bit more left before "Building a Dex" chapter ! 
+
+# day 22
+- learned map and filter within async functions
+- good habit to use try and catch blocks + async combos
