@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <h1>Crypto Price Quotes</h1>
+    <h3>via 1inch and Coinpaprika API</h2>
+        <form action="#" method="POST" class="exchange-form">
+            <div class="form-row">
+                <label>
+          From:
+          <select name="from-token">
+            <!-- <option value="ETH">ETH</option> -->
+          </select>
+        </label>
+                <div class="form-row">
+                    <img class="js-from-token-image" src="" style="margin: auto; width: 100px; display: block;" />
+                </div>
+            </div>
+            <div class="form-row">
+                <label>
+          To:
+          <select name="to-token"></select>
+        </label>
+                <div class="form-row">
+                    <img class="js-to-token-image" src="" style="margin: auto; width: 100px; display: block;" />
+                </div>
+            </div>
+            <div class="form-row">
+                <button type="submit" class="js-submit-quote" disabled>
+          Get quote
+        </button>
+            </div>
+        </form>
+
+        <div class="js-quote-container"></div>
+</body>
+<script src="./dex.js"></script>
+
+</html>

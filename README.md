@@ -58,3 +58,8 @@
 # day 22
 - learned map and filter within async functions
 - good habit to use try and catch blocks + async combos
+
+# day 23-24
+- finished assignment with added images https://70jl3o.csb.app/
+- learned more on async, destructuring and mixing APIs
+ 
