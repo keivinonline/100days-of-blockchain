@@ -9,3 +9,11 @@ arr_b.reduce((a,b) => a+b)
 >15
 
 ```
+# eventListeners
+```js
+// older syntax
+document.getElementById("btn-login").onclick = login;
+
+// newer syntax
+document.getElementById("btn-login").addEventListener('click',login)
+```
