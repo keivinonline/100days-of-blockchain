@@ -63,3 +63,7 @@
 - finished assignment with added images https://70jl3o.csb.app/
 - learned more on async, destructuring and mixing APIs
  
+# day 25-26
+- halfway through "Building a Dex" lesson
+- started using moralis SDK to interact with browser wallet
+ 
