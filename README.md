@@ -67,3 +67,7 @@
 - halfway through "Building a Dex" lesson
 - started using moralis SDK to interact with browser wallet
  
+# day 27-29
+- took a rest day
+- halfway creating the DEX
+- able to login, getStats and get token dropdown for swap
