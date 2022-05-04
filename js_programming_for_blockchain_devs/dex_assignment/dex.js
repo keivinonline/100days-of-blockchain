@@ -1,7 +1,7 @@
 // connect to Moralis server
 
 const serverUrl = "https://vqlkxfpfpb3y.usemoralis.com:2053/server";
-const appId = "<redacted>";
+const appId = "xchGKGisMMN9Yf0KyeThZJJrRg0Omlxud3Wrh8kJ";
 Moralis.start({ serverUrl, appId });
 
 Moralis
@@ -37,6 +37,8 @@ async function initSwapForm(event) {
 
     // display results
     document.querySelector('.js-quote-container').innerHTML = ''
+        // remove error messages
+    document.querySelector('.js-amount-error').innerText = ''
 
 }
 async function getStats() {
@@ -50,7 +52,7 @@ async function getStats() {
         <td>${tokenValue(token.balance, token.decimals)}</td>
         <td>
             <button
-                class="js-swap"
+                class="js-swap btn btn-sucess"
                 data-address="${token.token_address}"
                 data-symbol="${token.symbol}"
                 data-decimals="${tokenValue(token.balance, token.decimals)}"
@@ -144,9 +146,13 @@ async function formSubmitted(event) {
 
     const fromAmount = Number.parseFloat($amountInput.value)
     const fromMaxValue = Number.parseFloat($selectedToken.dataset.max)
-    if (Number.isNan(fromAmount) || fromAmount > maxValue) {
+        // debug
+    debugger
+    if (Number.isNaN(fromAmount) || fromAmount > fromMaxValue) {
         // invalid input
         document.querySelector('.js-amount-error').innerText = "Invalid Amount"
+    } else {
+        document.querySelector('.js-amount-error').innerText = ''
     }
 }
 
@@ -170,6 +176,8 @@ async function formCanceled(event) {
     // display results
     document.querySelector('.js-quote-container').innerHTML = ''
 
+    // remove error messages
+    document.querySelector('.js-amount-error').innerText = ''
 }
 
 document.querySelector('.js-submit').addEventListener('click', formSubmitted)

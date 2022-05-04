@@ -1,0 +1,19 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Drink Choice",
+            "value": "IPA"
+        },
+        {
+            "trait_type": "Arrival Time",
+            "value": "After Party"
+        },
+        {
+            "trait_type": "Bar Tab ID",
+            "value": "0xa60e601a1b9c51ba476a4866653f79aeb55129d6deac1845a0c0822f201a38d3"
+        }
+    ],
+    "description": "A receipt for a night in A Curious Place.",
+    "image": "ipfs://bafybeigzq2vz7fct6tck4vmy56e5qs4fqebabjcekwny37k52hii5ewina/ipa_1.png",
+    "name": "Receipt #100"
+}

@@ -460,4 +460,18 @@ JSON.parse(string).traits
 - most values have properties except for `null` and `undefined`
 - accessing them via dot notation or regular dict notation
 
-# recursive functions
+# bootstrap
+- for example https://getbootstrap.com/
+- css added top of html page
+- JS bootstrap added before local js reference
+- add whole `body` in side `container`
+- add
+## grid system
+```html
+<div class="col-12 col-md-6">
+    <h1>Moralis Swap</h1>
+</div>
+```
+- set default of `col-12` which spans 12 out of 12 cols for mobile
+- `col-md-6` means for size above 768px(md), use 6 cols
+## flex
