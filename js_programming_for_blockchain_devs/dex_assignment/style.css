@@ -5,7 +5,8 @@
 }
 
 body {
-    background-color: beige;
+    background-color: black;
+    color: whitesmoke
 }
 
 .exchange-form {
@@ -21,4 +22,8 @@ body {
 
 .error {
     color: darkred;
+}
+
+.btn-sm {
+    margin: 6px;
 }

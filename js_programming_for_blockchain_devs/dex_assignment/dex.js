@@ -1,7 +1,7 @@
 // connect to Moralis server
 
 const serverUrl = "https://vqlkxfpfpb3y.usemoralis.com:2053/server";
-const appId = "<redacted>";
+const appId = "";
 Moralis.start({ serverUrl, appId });
 
 Moralis
@@ -37,6 +37,8 @@ async function initSwapForm(event) {
 
     // display results
     document.querySelector('.js-quote-container').innerHTML = ''
+        // remove error messages
+    document.querySelector('.js-amount-error').innerText = ''
 
 }
 async function getStats() {
@@ -50,10 +52,10 @@ async function getStats() {
         <td>${tokenValue(token.balance, token.decimals)}</td>
         <td>
             <button
-                class="js-swap"
+                class="js-swap btn btn-success"
                 data-address="${token.token_address}"
                 data-symbol="${token.symbol}"
-                data-decimals="${tokenValue(token.balance, token.decimals)}"
+                data-decimals="${token.decimals}"
             > Swap
             </button>
         </td>
@@ -90,16 +92,20 @@ async function logOut() {
 }
 
 
-
-
 async function getTickerAddresses(tickerList) {
-    const response = await fetch("https://api.1inch.exchange/v3.0/1/tokens");
-    const tokens = await response.json();
-    let tokenList = Object.values(tokens.tokens);
+    // const response = await fetch("https://api.1inch.exchange/v3.0/1/tokens");
+    // const tokens = await response.json();
+    // let tokenList = Object.values(tokens.tokens);
 
     // filter
+    // return tokenList.filter((token) => tickerList.includes(token.symbol));
+
+    const tokens = await Moralis.Plugins.oneInch.getSupportedTokens({
+        chain: 'eth'
+            // The blockchain you want to use (eth/bsc/polygon)
+    })
+    const tokenList = Object.values(tokens.tokens);
     return tokenList.filter((token) => tickerList.includes(token.symbol));
-    // fetch addr
 }
 
 /** To token dropdown preparation */
@@ -115,7 +121,7 @@ async function getTop10Coins() {
 
 function renderTokenDropdown(tokens) {
     const options = tokens.map(token =>
-        `<option value="${token.symbol}-${token.decimals}">
+        `<option value="${token.address}-${token.decimals}">
             ${token.name}
         </option>
         `).join('')
@@ -144,10 +150,51 @@ async function formSubmitted(event) {
 
     const fromAmount = Number.parseFloat($amountInput.value)
     const fromMaxValue = Number.parseFloat($selectedToken.dataset.max)
-    if (Number.isNan(fromAmount) || fromAmount > maxValue) {
+
+    if (Number.isNaN(fromAmount) || fromAmount > fromMaxValue) {
         // invalid input
         document.querySelector('.js-amount-error').innerText = "Invalid Amount"
+        return // exit
+    } else {
+        document.querySelector('.js-amount-error').innerText = ''
     }
+    // submission of quote request
+    /// via destructuring 
+    const [toTokenAddress, toDecimals] = document.querySelector('[name=to-token]').value.split('-')
+
+    const fromSymbol = $selectedToken.innerText
+    const fromDecimals = $selectedToken.dataset.decimals
+    const fromTokenAddress = $selectedToken.dataset.address
+    const amount = Moralis.Units.Token(fromAmount, fromDecimals).toString()
+    console.log(`fromTokenAddress:${fromTokenAddress}`)
+    console.log(`toTokenAddress:${toTokenAddress}`)
+    console.log(`amount:${amount}`)
+
+    // gruarded blocks 
+    try {
+        const swapQuote = await Moralis.Plugins.oneInch.quote({
+            chain: 'eth',
+            fromTokenAddress,
+            toTokenAddress,
+            amount
+
+        })
+        console.log(`swapQuote:${swapQuote}`)
+        console.log(`${Moralis.Units.Token(fromAmount, fromDecimals).toString()}`)
+
+        const toAmount = tokenValue(swapQuote.toTokenAmount, swapQuote.toToken.decimals)
+        document.querySelector(".js-quote-container").innerHTML = `
+            <p>${swapQuote.fromTokenAmount} ${swapQuote.fromToken.symbol} = ${toAmount}  ${swapQuote.toToken.symbol}</p>
+            <p>Gas fee: ${swapQuote.estimatedGas}</p>
+        `
+
+    } catch (e) {
+        console.log(`swapQuote:${e}`)
+        document.querySelector(".js-quote-container").innerHTML = `
+            <p class="error">The conversion didn't succeed</p>
+        `
+    }
+
 }
 
 async function formCanceled(event) {
@@ -170,6 +217,8 @@ async function formCanceled(event) {
     // display results
     document.querySelector('.js-quote-container').innerHTML = ''
 
+    // remove error messages
+    document.querySelector('.js-amount-error').innerText = ''
 }
 
 document.querySelector('.js-submit').addEventListener('click', formSubmitted)
