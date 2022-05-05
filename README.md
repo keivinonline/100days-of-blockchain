@@ -71,3 +71,7 @@
 - took a rest day
 - halfway creating the DEX
 - able to login, getStats and get token dropdown for swap
+
+# day 30-31
+- added bootstrap to page
+- finished #Moralis Swap assignment !
