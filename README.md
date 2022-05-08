@@ -75,3 +75,8 @@
 # day 30-31
 - added bootstrap to page
 - finished #Moralis Swap assignment !
+
+# day 32-33
+- started Ethereum Smart Contract 101 on #MoralisAcademy
+- learned up to Solidity basics (types, mapping, structs, control flow and visibility)
+- getting Remix hands-on !
