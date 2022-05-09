@@ -43,3 +43,49 @@ mapping(address->uint) balance
     - network congestion
     - eth price
 - most expensive is storage
+
+## Error Handling
+1. require()
+    - checks for valid conditions (e.g. check inputs, check token owner, has sufficient balance)
+    - check inputs
+    - revert
+- usually beginning of the function
+- normal for require() to throw an error
+- sample
+```
+require(inputNumber > 0);
+
+require(msg.sender == owner);
+```
+- sample revert
+```
+VM error: revert.
+```
+2. assert()
+- test for internal errors
+- check invariants
+- should only throw an error when there is an actual error
+- should not use this to check inputs
+- assert statement at end of transfer function
+- e.g. check if transfer is done correctly
+- `invariant`
+    - a concept/condition that is always true at a particular point of the code
+    - e.g. after a full withdrawal of 100 usd, we can define an invariant that the balance should be 0 in theory. so we assert to check that invariant
+
+## modifiers
+- small function
+- always runs at the beginning of a real function
+```
+// common throughout the contract
+//modifier
+modifier onlyOwner {
+    require(msg.sender == owner);
+    _; // replaced the main function body in theory
+}
+
+function addBalance(uint _toAdd) public onlyOwner returns(uint){
+    balance[msg.sender] += _toAdd;
+    return balance[msg.sender];
+}
+
+```
