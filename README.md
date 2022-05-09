@@ -80,3 +80,10 @@
 - started Ethereum Smart Contract 101 on #MoralisAcademy
 - learned up to Solidity basics (types, mapping, structs, control flow and visibility)
 - getting Remix hands-on !
+
+# day 34
+- learned Error Handling via require() and assert()
+- require() checks for input validation while assert() checks for invariants
+- Usage of modifers to simplify code
+
+
