@@ -85,3 +85,8 @@
 - learned Error Handling via require() and assert()
 - require() checks for input validation while assert() checks for invariants
 - Usage of modifers to simplify code
+
+# day 35
+- learned Data Locations (storage, memory and calldata)
+- complex datatypes require `memory` declaration
+- learned Events and using them to log data

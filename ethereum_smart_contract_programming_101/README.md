@@ -89,3 +89,29 @@ function addBalance(uint _toAdd) public onlyOwner returns(uint){
 }
 
 ```
+
+# Data locations
+## locations
+1. storage
+- permanent storage, persistent over time and function execution
+- 
+2. memory
+- used within function arguements and function body
+- all value/simple data types do not need to have `memory` specified 
+    - e.g. uint,int, bool, bytes, addresses, fixed sized array
+- complex data types will require `memory` declaration
+    - e.g. string
+- any temporary variables are all saved in memory
+3. calldata
+- similar to memory but READ-ONLY
+
+## Events
+- logs data/events during function execution
+- can add multiple logging points during execution
+- `indexed` tells eth nodes to index it to be searchable 
+- max 3 indexed params per event
+
+```
+    event balanceAdded(uint amount, address indexed depositedTo);
+
+```
