@@ -115,3 +115,14 @@ function addBalance(uint _toAdd) public onlyOwner returns(uint){
     event balanceAdded(uint amount, address indexed depositedTo);
 
 ```
+## payable functions
+- balance of the smart contract is implicit. hence do not need to be keep tracked
+```
+    // "payable" allows receive of eth
+    function deposit() public payable returns(uint){
+        //balance[msg.sender] += msg.value; // this can be removed as redundant
+        emit ethDeposited(msg.value, msg.sender);
+        return balance[msg.sender];
+    }
+
+```
