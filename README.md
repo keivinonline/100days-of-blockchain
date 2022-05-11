@@ -90,3 +90,9 @@
 - learned Data Locations (storage, memory and calldata)
 - complex datatypes require `memory` declaration
 - learned Events and using them to log data
+
+# day 36
+- distracted by market dump
+- learned payable functions via "payable" keyword
+- usage of built-in msg.sender.transfer(amount);
+- importance of using amount vars + require() to prevent wallet drains
