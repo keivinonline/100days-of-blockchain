@@ -126,3 +126,156 @@ function addBalance(uint _toAdd) public onlyOwner returns(uint){
     }
 
 ```
+
+# Solidity and OOP reading assignment
+- https://medium.com/coinmonks/solidity-and-object-oriented-programming-oop-191f8deb8316
+- Inheritance
+    - defining multiple contracts related to each other through parent-child relationships
+- Parent and child contracts
+- inheritance is about code-reusability 
+- all public and internal scoped functions and state vars are available to derived contracts
+- solidity copies base contract bytecode into derived contract
+## Types of inheritance
+1. Single
+contract_a -> contract_b
+2. multi-level
+contract_a -> contract_b -> contract_c
+3. hierarchical
+contract_a -> contract_b
+contract_a -> contract_c
+4. multiple
+contract_a -> contract_b
+contract_a -> contract_c
+contract_b, contract_c -> contract_d
+- Solidity follows Python's C3 linearization AKA Method Resolution Order (MRO) which forces specific order in graphs of base contracts
+- follows specific order (from base to the most derived contract)
+## encapsulation
+- 1 of the most important pillars in OOP
+- process of hiding/allowing access to state vars for changing state
+- pattern of declaring vars that cannot be accessed directly by clients but can only be modified using functions
+###  Visibility modifiers such as 
+    - external
+    - public
+    - internal
+    - private
+
+## polymorphism 
+- having multiple forms
+- 2 types which are 
+### Function polymorphism
+- declaring multiple functions within same contract or inheriting contracts having same name
+- functions differ in param data types or no. of params
+- return types are not taken into consideration to determine valid signatures for polymorphism (AKA method overloading)
+```
+pragma solidity ^0.4.19;
+contract helloFunctionPloymorphism {
+ 
+ function getVariableData(int8 data) public pure returns(int8 output) {
+ return data;
+ }
+function getVariableData(int16 data) public pure returns(int16 output) {
+ return data;
+ }
+}
+```
+### contract polymorphism
+- using multiple contract instances interchangeably 
+- helps in invoking derived contract functions using base contract instance
+```
+pragma solidity ^0.4.19;
+contract ParentContract {
+ uint internal simpleInteger;
+function SetInteger(uint _value) public {
+ simpleInteger = _value;
+ }
+function GetInteger() public view returns (uint) {
+ return 10;
+ }
+}
+contract ChildContract is ParentContract {
+ 
+ function GetInteger() public view returns (uint) {
+ return simpleInteger;
+ }
+}
+```
+## Abstract contract
+- contracts with partial function definitions
+- cannot create an instance of abstract contract
+- helps to define contract structure
+- any class inheriting from it must provide an implementation for them
+- function signatures terminate with semicolon
+```
+contract abstractHelloWorld {
+ function GetValue() public view returns (uint);
+ function SetValue(uint _value) public;
+function AddNumber(uint _value) public returns (uint) {
+ return 10;
+ }
+}
+contract HelloWorld is abstractHelloWorld{
+ uint private simpleInteger;
+function GetValue() public view returns (uint) {
+ return simpleInteger;
+ }
+ 
+ function SetValue(uint _value) public {
+ simpleInteger = _value;
+ }
+function AddNumber(uint _value) public returns (uint ){
+ return simpleInteger = _value;
+ }
+}
+```
+## Interfaces
+- are like bastract contracts but cannot contain any definition
+- can only contain function declarations
+- functions in interfacces cannot contain any code
+- can only contain signature of functions
+
+
+## What is the base contract?
+- a parent contract where other contracts derive classes from it 
+## Which functions are available for derived contracts?
+- public and internal scoped functions/state vars 
+## What is hierarchical inheritance?
+- contract_a -> contract_b
+- contract_a -> contract_c
+
+## Deploying contracts with inheritance
+- deploying the child contract will auto deploy the imported contract as well
+
+## Creating function via `public` modifier
+-
+```
+contract Ownable {
+    // allow list for certain users
+    address public owner;
+
+```
+## Destroyable contracts
+- https://betterprogramming.pub/solidity-what-happens-with-selfdestruct-f337fcaa58a7
+- `selfdestruct` renders a contract inoperable
+- extrema ratio for malfunctioning contract
+- opcode initiall named `SUICIDE` but renamed to `SELFDESTRUCT`
+```
+pragma solidity >0.6.0;
+contract Storage {
+ address payable private owner;
+ uint256 number;
+ constructor() {
+  owner = msg.sender;
+ }
+ function store(uint256 num) public {
+  number = num;
+ }
+ function retrieve() public view returns (uint256){
+  return number;
+ }
+ 
+ function close() public { 
+  selfdestruct(owner); 
+ }
+}
+```
+- after calling the `close()` function, any other interaction will be successfull but does nothing
