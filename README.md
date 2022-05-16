@@ -96,3 +96,7 @@
 - learned payable functions via "payable" keyword
 - usage of built-in msg.sender.transfer(amount);
 - importance of using amount vars + require() to prevent wallet drains
+
+# day 37-38
+- learned types of solidity inheritance
+- did an assignment with inheritance and selfdestruct(receiver)
